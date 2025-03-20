@@ -1,50 +1,57 @@
-# Welcome to your Expo app 👋
+Xây Dựng Ứng Dụng Threads Clone với React Native
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Giới Thiệu
 
-## Get started
+Project này là một bản sao của ứng dụng Threads, được xây dựng bằng React Native với sự hỗ trợ của các công nghệ hiện đại như Convex, Clerk, Sentry, và Expo. Mục tiêu của project là tạo ra một ứng dụng mạng xã hội đơn giản nhưng mạnh mẽ, cho phép người dùng đăng bài, tương tác, và nhận thông báo.
 
-1. Install dependencies
+Các Tính Năng Chính
 
-   ```bash
-   npm install
-   ```
+Đăng Nhập & Xác Thực Người Dùng:
 
-2. Start the app
+Sử dụng Clerk để quản lý xác thực người dùng.
 
-   ```bash
-    npx expo start
-   ```
+Bảo vệ các trang với Expo Router và Clerk authentication.
 
-In the output, you'll find options to open the app in a
+Quản Lý Dữ Liệu:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Kết nối ứng dụng với Convex để quản lý dữ liệu thời gian thực.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Sử dụng Convex HTTP Actions và Clerk Webhooks để xử lý các yêu cầu HTTP.
 
-## Get a fresh project
+Giao Diện Người Dùng:
 
-When you're ready, run:
+Thanh tab với nút hành động tùy chỉnh.
 
-```bash
-npm run reset-project
-```
+Component phóng to ảnh.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Giao diện người dùng Profile với khả năng cập nhật thông tin.
 
-## Learn more
+Trình soạn thảo Thread và khả năng thêm hình ảnh vào bài đăng.
 
-To learn more about developing your project with Expo, look at the following resources:
+Tương Tác Người Dùng:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Feed với phân trang.
 
-## Join the community
+Chức năng like bài viết và hiệu ứng cuộn.
 
-Join our community of developers creating universal apps.
+Để lại bình luậu trên các bài viết.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Thông Báo:
+
+Tích hợp Expo Push Notifications để gửi thông báo đẩy.
+
+Debugging & Profiling:
+
+Sử dụng Sentry để debug và profile ứng dụng.
+
+Công Nghệ Sử Dụng
+
+React Native: Framework để xây dựng ứng dụng di động đa nền tảng.
+
+Expo: Công cụ để phát triển ứng dụng React Native với các tính năng như file-based routing và push notifications.
+
+Convex: Backend-as-a-service để quản lý dữ liệu thời gian thực.
+
+Clerk: Dịch vụ xác thực người dùng.
+
+Sentry: Công cụ để theo dõi lỗi và hiệu suất ứng dụng.
