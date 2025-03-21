@@ -12,6 +12,8 @@ import {ConvexReactClient} from 'convex/react'
 import { ConvexProviderWithClerk } from 'convex/react-clerk'
 import { LogBox } from 'react-native'
 
+import './global.css';
+
 SplashScreen.preventAutoHideAsync()
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY
