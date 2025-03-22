@@ -47,7 +47,7 @@ const InitialLayout = () => {
 
 export default function RootLayout() {
  
-
+  console.log("hi app haha");
   return (
     <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey!}>
       <ClerkLoaded>
