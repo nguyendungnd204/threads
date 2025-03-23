@@ -1,7 +1,7 @@
 import {Stack, Tabs, useRouter, } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Colors } from '@/constants/Colors';
 import { useAuth } from '@clerk/clerk-expo';
 import { useRoute } from '@react-navigation/native';
@@ -11,8 +11,8 @@ const CreateTabIcon = ({ color, size, focused } : {color: string, size: number, 
   return (
     <View style={{
       backgroundColor: Colors.itemBackground,
-      borderRadius: 6, 
-      padding: 8, 
+      borderRadius: 8, 
+      padding: 2, 
     }}>
       <Ionicons name='add' size={size} color={color} />
     </View>
@@ -63,11 +63,11 @@ const Layout = () => {
           tabPress: (e: any) => {
             e.preventDefault();
             // haptics.selectionAsync();
-            router.push('/(modal)/create')
+            router.push('/(auth)/(modal)/create');
           }
         }}
       />
-      <Tabs.Screen name="favorite" options={{
+      <Tabs.Screen name="favorites" options={{
         title: 'Favorite',
         tabBarIcon: ({ color, size, focused }) => (
           <Ionicons name={focused ? 'heart' : 'heart-outline'} size={size} color={color} />
@@ -79,8 +79,10 @@ const Layout = () => {
           <Ionicons name={focused ? 'person' : 'person-outline'} size={size} color={color} />
         ),
         headerRight: () => (
-          <Text onPress={() => signOut()}>Thoát</Text>
-        )
+          <TouchableOpacity onPress={() => signOut()}>
+              <Ionicons name={'log-out'} size={24} />
+          </TouchableOpacity>
+        ),
       }}/>
     </Tabs>
   )
