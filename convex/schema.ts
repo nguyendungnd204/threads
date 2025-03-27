@@ -26,6 +26,8 @@ export const Thread = {
   websiteUrl: v.optional(v.string()), 
 };
 export default defineSchema({
-    users: defineTable(User),
+    users: defineTable(User).searchIndex('searchUsers', {
+      searchField: 'username',
+    }),
     threads: defineTable(Thread),
 })

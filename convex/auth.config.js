@@ -1,7 +1,7 @@
 export default {
     providers: [
       {
-        domain: "https://novel-albacore-65.clerk.accounts.dev/",
+        domain: "https://harmless-goose-74.clerk.accounts.dev/",
         applicationID: "convex",
       },
     ]

@@ -1,3 +1,4 @@
+import { Id } from "./_generated/dataModel";
 import { internalMutation, query } from "./_generated/server";
 import {v} from 'convex/values'
 export const getAllUsers = query({
@@ -24,5 +25,28 @@ export const createUser = internalMutation({
             username: args.username || `${args.first_name}${args.last_name}`,
         });
         return userId;
+    }
+})
+
+export const searchUser = query({
+    args: {
+        search: v.string(),
+    },
+    handler: async (ctx, args) => {
+        const user = await ctx.db
+            .query('users')
+            .withSearchIndex('searchUsers', (q) => q.search('username', args.search))
+            .collect();
+        const userWithImage = await Promise.all(user.map(async (user) =>{
+            if (!user?.imageUrl || user.imageUrl.startsWith("http")){
+                user.imageUrl;
+                return user;
+            }
+
+            const url = await ctx.storage.getUrl(user.imageUrl as Id<'_storage'>);
+            user.imageUrl = url!;
+            return user;
+        })) 
+        return userWithImage;
     }
 })
