@@ -26,11 +26,11 @@ export const userAction = httpAction(async (ctx, req) => {
             break;
     }
     return new Response(null, { status: 200 });
-});
+});  
 http.route({
     path: "/clerk-users-webhook",
     method: "POST",
     handler: userAction,
   });
-//https://kindred-gopher-183.convex.site // đây là endpoint ví dụ: https://kindred-gopher-183.convex.site/clerk-users-webhook
+// https://brainy-dalmatian-693.convex.site/clerk-users-webhook
 export default http;
