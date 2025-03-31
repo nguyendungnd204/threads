@@ -6,16 +6,15 @@ const Layout = () => {
   const router = useRouter();
 
   return (
-    <Stack
-      screenOptions={{ contentStyle: { backgroundColor: 'white' }, headerShadowVisible: false }}>
+    <Stack screenOptions={{ contentStyle: { backgroundColor: 'white' }, headerShadowVisible: false }}>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen
         name="(modal)/create"
         options={{
           presentation: 'modal',
-          title: 'New thread',
+          title: 'Thread mới',
           headerRight: () => (
-            <TouchableOpacity>
+            <TouchableOpacity >
               <Ionicons name="ellipsis-horizontal-circle" size={24} color="#000" />
             </TouchableOpacity>
           ),
