@@ -2,27 +2,27 @@
 
 🚀 Giới Thiệu
 
-Project này là một bản sao của ứng dụng Threads, được xây dựng bằng React Native với sự hỗ trợ của các công nghệ hiện đại như Convex, Clerk, Sentry, và Expo. Mục tiêu của project là tạo ra một ứng dụng mạng xã hội đơn giản nhưng mạnh mẽ, cho phép người dùng đăng bài, tương tác, và nhận thông báo.
+Project này là một bản sao của ứng dụng Threads, được xây dựng bằng React Native với sự hỗ trợ của các công nghệ hiện đại như OAuth, Express.js, và MongoDB Atlas. Mục tiêu của project là tạo ra một ứng dụng mạng xã hội đơn giản nhưng mạnh mẽ, cho phép người dùng đăng bài, tương tác, và nhận thông báo.
 
 ✨ Các Tính Năng Chính
 
 🔑 Đăng Nhập & Xác Thực Người Dùng:
 
-🔹 Sử dụng Clerk để quản lý xác thực người dùng.
+🔹 Sử dụng OAuth (Facebook, Google) để xác thực người dùng.
 
-🔹 Bảo vệ các trang với Expo Router và Clerk authentication.
+🔹 Xử lý đăng nhập và xác thực bằng Express.js.
+
+🔹 Bảo vệ các trang với Expo Router và Passport.js.
 
 📊 Quản Lý Dữ Liệu:
 
-🔹 Kết nối ứng dụng với Convex để quản lý dữ liệu thời gian thực.
+🔹 Kết nối ứng dụng với MongoDB Atlas để quản lý dữ liệu.
 
-🔹 Sử dụng Convex HTTP Actions và Clerk Webhooks để xử lý các yêu cầu HTTP.
+🔹 Sử dụng Express.js API để xử lý yêu cầu HTTP.
 
 🎨 Giao Diện Người Dùng:
 
 🔹 Thanh tab với nút hành động tùy chỉnh.
-
-🔹 Component phóng to ảnh.
 
 🔹 Giao diện người dùng Profile với khả năng cập nhật thông tin.
 
@@ -36,22 +36,18 @@ Project này là một bản sao của ứng dụng Threads, được xây dựn
 
 🔹 Để lại bình luận trên các bài viết.
 
-🔔 Thông Báo:
+📢 Thông Báo:
 
 🔹 Tích hợp Expo Push Notifications để gửi thông báo đẩy.
 
-🛠 Debugging & Profiling:
-
-🔹 Sử dụng Sentry để debug và profile ứng dụng.
-
 🛠 Công Nghệ Sử Dụng
 
-⚛ React Native: Framework để xây dựng ứng dụng di động đa nền tảng.
+🎮 React Native: Framework để xây dựng ứng dụng di động đa nền tảng.
 
 🚀 Expo: Công cụ để phát triển ứng dụng React Native với các tính năng như file-based routing và push notifications.
 
-📡 Convex: Backend-as-a-service để quản lý dữ liệu thời gian thực.
+💽 MongoDB Atlas: Cơ sở dữ liệu phi quan hệ quan, quản lý dữ liệu linh hoạt.
 
-🔐 Clerk: Dịch vụ xác thực người dùng.
+💀 Express.js: Framework backend nhẹ nhàng và linh hoạt dành cho Node.js.
 
-🛑 Sentry: Công cụ để theo dõi lỗi và hiệu suất ứng dụng.
+🔒 OAuth (Google, Facebook): Giải pháp xác thực bằng tài khoản mạng xã hội.
