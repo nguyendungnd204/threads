@@ -5,31 +5,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { useOAuth } from '@clerk/clerk-expo';
 
 const LoginScreen = () => {
-  const { startOAuthFlow } = useOAuth({ strategy: 'oauth_facebook' });
-  const { startOAuthFlow: googleAuth } = useOAuth({ strategy: 'oauth_google' });
 
   const handleFacebookLogin = async () => {
-    try {
-      const { createdSessionId, setActive } = await startOAuthFlow();
-
-      if (createdSessionId) {
-        setActive!({ session: createdSessionId });
-      }
-    } catch (err) {
-      console.error('OAuth error', err);
-    }
+   
   };
 
   const handleGoogleLogin = async () => {
-    try {
-      const { createdSessionId, setActive } = await googleAuth();
 
-      if (createdSessionId) {
-        setActive!({ session: createdSessionId });
-      }
-    } catch (err) {
-      console.error('OAuth error', err);
-    }
   };
 
   return (
