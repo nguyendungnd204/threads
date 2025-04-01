@@ -9,6 +9,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { useRouter } from 'expo-router';
 import './global.css';
+import { AuthProvider } from '@/context/authContext';
+import { Stack } from 'expo-router';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -35,7 +37,11 @@ const RootLayoutNav = () => {
   const ref = useNavigationContainerRef();
 
   return (
-   <InitialLayout/>
+    <AuthProvider>
+      <Stack>
+        <Stack.Screen name="(public)/index" options={{ headerShown: false }} />
+      </Stack>
+    </AuthProvider>
   );
 };
 
