@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="646c1067-3a82-4f60-ae6d-d515cffad274" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api/interceptors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/AndroidProjectSystem.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FirebaseConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FirebaseConfig.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +38,7 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "Merging vandung",
+    "git-widget-placeholder": "vandung",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Workspace/Tai_lieu/Threads/android/app",
     "settings.editor.selected.configurable": "AndroidSdkUpdater"
