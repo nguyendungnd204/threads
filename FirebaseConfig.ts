@@ -1,5 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
+import {
+  initializeAuth,
+  browserLocalPersistence,
+  GoogleAuthProvider,
+  FacebookAuthProvider
+} from "firebase/auth";
 import { getDatabase } from "firebase/database";
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -18,7 +23,7 @@ const firebaseConfig = {
 // Khởi tạo Firebase
 const app = initializeApp(firebaseConfig);
 const auth = initializeAuth(app, {
-  persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+  persistence: browserLocalPersistence
 });
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
