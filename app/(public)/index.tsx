@@ -6,7 +6,7 @@ import { useAuth } from '@/context/authContext';
 import { router } from 'expo-router';
 
 const LoginScreen = () => {
-  const { user, loading, signInWithGoogle, signInWithFacebook } = useAuth();
+   const { user, loading, signInWithGoogle, signInWithFacebook } = useAuth();
 
   useEffect(() => {
     if (!loading && user) {

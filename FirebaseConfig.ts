@@ -1,12 +1,15 @@
 import { initializeApp } from "firebase/app";
 import {
   initializeAuth,
-  browserLocalPersistence,
   GoogleAuthProvider,
-  FacebookAuthProvider
+  FacebookAuthProvider,
+  connectAuthEmulator,
+  getReactNativePersistence,
+  getAuth
 } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
+
 
 // Cấu hình Firebase
 const firebaseConfig = {
@@ -19,14 +22,30 @@ const firebaseConfig = {
   appId: "1:178517372667:web:28376b82273da0bc484a5e",
   measurementId: "G-M2YPGQQS81"
 };
+// if(initializeApp(firebaseConfig) !== null){
+//   const app = initializeApp(firebaseConfig);
+//   const auth = initializeAuth(app, {
+//        persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+//    })
+// }
 
-// Khởi tạo Firebase
 const app = initializeApp(firebaseConfig);
-const auth = initializeAuth(app, {
-  persistence: browserLocalPersistence
-});
+
+const auth = getAuth(app);
+
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const database = getDatabase(app);
+
+connectAuthEmulator(auth, "http://localhost:9099", {
+  disableWarnings: true
+});
+// if (__DEV__) {
+//   try {
+   
+//   } catch (error) {
+//     console.log("Emulator đã được kết nối trước đó hoặc có lỗi:", error);
+//   }
+// }
 
 export { auth, googleProvider, facebookProvider, database };

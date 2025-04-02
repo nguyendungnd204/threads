@@ -1,5 +1,9 @@
-import { Redirect } from 'expo-router';
+import { Stack } from 'expo-router';
 
-export default function Index() {
-    return <Redirect href="(public)/"/>
+export default function PublicLayout() {
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(public)" />
+    </Stack>
+  );
 }
