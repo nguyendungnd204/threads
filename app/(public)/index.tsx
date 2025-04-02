@@ -1,18 +1,47 @@
 import { Colors } from '@/constants/Colors';
-import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useOAuth } from '@clerk/clerk-expo';
+import { useAuth } from '@/context/authContext';
+import { router } from 'expo-router';
 
 const LoginScreen = () => {
+  const { user, loading, signInWithGoogle, signInWithFacebook } = useAuth();
+
+  useEffect(() => {
+    if (!loading && user) {
+      console.log("User already logged in, navigating...");
+      router.replace('/(auth)/(modal)/create');
+    }
+  }, [user, loading]);
 
   const handleFacebookLogin = async () => {
-   
+    if (loading) return;
+    try {
+      await signInWithFacebook();
+    } catch (error) {
+      console.error('Facebook login failed:', error);
+      Alert.alert('Login Failed', 'Could not log in with Facebook.');
+    }
   };
 
   const handleGoogleLogin = async () => {
-
+    if (loading) return;
+    try {
+      await signInWithGoogle();
+    } catch (error) {
+      console.error('Google login failed:', error);
+      Alert.alert('Login Failed', 'Could not log in with Google.');
+    }
   };
+
+  if (loading) {
+    return (
+      <View style={[styles.container, styles.centerContent]}>
+        <ActivityIndicator size="large" color="#000" />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -21,24 +50,32 @@ const LoginScreen = () => {
         <Text style={styles.title}>How would you like to use Threads?</Text>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.loginButton} onPress={handleFacebookLogin}>
+          <TouchableOpacity 
+            style={[styles.loginButton, loading && styles.disabledButton]} 
+            onPress={handleFacebookLogin}
+            disabled={loading}
+          >
             <View style={styles.loginButtonContent}>
               <Image
                 source={require('@/assets/images/instagram_icon.webp')}
                 style={styles.loginButtonImage}
               />
-              <Text style={styles.loginButtonText}>Continue with Instagram</Text>
+              <Text style={styles.loginButtonText}>
+                {loading ? 'Loading...' : 'Continue with Facebook'}
+              </Text>
               <Ionicons name="chevron-forward" size={24} color={Colors.border} />
             </View>
-            <Text style={styles.loginButtonSubtitle}>
-              Log in or create a THreads profile with your Instagram account. With a profile, you
-              can post, interact and get personalised recommendations.
-            </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.loginButton} onPress={handleGoogleLogin}>
+          <TouchableOpacity 
+            style={[styles.loginButton, loading && styles.disabledButton]} 
+            onPress={handleGoogleLogin}
+            disabled={loading}
+          >
             <View style={styles.loginButtonContent}>
-              <Text style={styles.loginButtonText}>Continue with Google</Text>
+              <Text style={styles.loginButtonText}>
+                {loading ? 'Loading...' : 'Continue with Google'}
+              </Text>
               <Ionicons name="chevron-forward" size={24} color={Colors.border} />
             </View>
           </TouchableOpacity>
@@ -70,6 +107,9 @@ const styles = StyleSheet.create({
     gap: 20,
     backgroundColor: Colors.background,
   },
+  centerContent: {
+    justifyContent: 'center',
+  },
   loginImage: {
     width: '100%',
     height: 380,
@@ -90,6 +130,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.border,
+  },
+  disabledButton: {
+    opacity: 0.7,
   },
   loginButtonText: {
     color: '#000',
