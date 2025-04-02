@@ -14,7 +14,6 @@ import { Stack } from 'expo-router';
 
 SplashScreen.preventAutoHideAsync();
 
-
 const InitialLayout = () => {
   const [fontsLoaded] = useFonts({
     DMSans_400Regular,
@@ -30,19 +29,17 @@ const InitialLayout = () => {
     }
   }, [fontsLoaded]);
 
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return <Slot />;
 };
 
-const RootLayoutNav = () => {
-  const ref = useNavigationContainerRef();
-
+export default function RootLayout() {
   return (
     <AuthProvider>
-      <Stack>
-        <Stack.Screen name="(public)/index" options={{ headerShown: false }} />
-      </Stack>
+      <InitialLayout />
     </AuthProvider>
   );
-};
-
-export default RootLayoutNav;
+}

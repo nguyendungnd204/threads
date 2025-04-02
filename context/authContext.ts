@@ -13,26 +13,15 @@ import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 import * as Facebook from 'expo-auth-session/providers/facebook';
 import { Platform } from 'react-native';
+import {User} from '../types'
 
 WebBrowser.maybeCompleteAuthSession();
 
-interface UserData {
-  fullname: string | null;
-  email: string | null;
-  avatar: string | null;
-  oauthProvider: 'google' | 'facebook';
-  oauthId: string;
-  bio?: string;
-  followers?: { [key: string]: boolean };
-  following?: { [key: string]: boolean };
-  createdAt: object; 
-  updatedAt: object; 
-  lastLogin?: object; 
-}
+
 
 interface AuthContextType {
   user: FirebaseAuthUser | null;
-  userData: UserData | null; 
+  userData: User | null; 
   loading: boolean;
   signInWithGoogle: () => Promise<void>;
   signInWithFacebook: () => Promise<void>;
@@ -48,7 +37,7 @@ const FACEBOOK_APP_ID = "1333261937881551";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<FirebaseAuthUser | null>(null);
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const [userData, setUserData] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   const [googleRequest, googleResponse, googlePromptAsync] = Google.useAuthRequest({
@@ -137,7 +126,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const now = serverTimestamp(); 
 
       if (!snapshot.exists()) {
-        const newUser: UserData = {
+        const newUser: User = {
           fullname: firebaseUser.displayName,
           email: firebaseUser.email,
           avatar: firebaseUser.photoURL,
@@ -154,8 +143,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUserData(newUser); 
         console.log(`New user created in DB: ${firebaseUser.uid}`);
       } else {
-        const existingData = snapshot.val() as UserData;
-        const updates: Partial<UserData> = {
+        const existingData = snapshot.val() as User;
+        const updates: Partial<User> = {
             lastLogin: now,
             updatedAt: now,
         };
@@ -177,12 +166,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const getUserDataFromDatabase = async (userId: string): Promise<UserData | null> => {
+  const getUserDataFromDatabase = async (userId: string): Promise<User | null> => {
     const userRef = ref(database, `users/${userId}`);
     try {
       const snapshot = await get(userRef);
       if (snapshot.exists()) {
-        return snapshot.val() as UserData;
+        return snapshot.val() as User;
       } else {
         console.warn(`User data not found in DB for uid: ${userId}`);
         return null;
